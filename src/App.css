@@ -1,0 +1,41 @@
+/* Estilo elegante e moderno para a aplicação */
+#root {
+  max-width: 900px;
+  margin: 2rem auto;
+  padding: 2.5rem 2rem;
+  background: rgba(255,255,255,0.85);
+  border-radius: 1.5rem;
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
+  text-align: center;
+  font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
+}
+
+.logo {
+  height: 5em;
+  padding: 1em;
+  will-change: filter;
+  transition: filter 300ms, transform 300ms;
+  border-radius: 1rem;
+  background: linear-gradient(135deg, #e0e7ff 0%, #f0fdfa 100%);
+}
+.logo:hover {
+  filter: drop-shadow(0 0 2em #6366f1aa);
+  transform: scale(1.07) rotate(-2deg);
+}
+.logo.react:hover {
+  filter: drop-shadow(0 0 2em #38bdf8aa);
+}
+
+.card {
+  padding: 2em;
+  background: rgba(243,244,246,0.7);
+  border-radius: 1rem;
+  box-shadow: 0 2px 8px 0 rgba(0,0,0,0.04);
+  margin-bottom: 1.5rem;
+}
+
+.read-the-docs {
+  color: #6366f1;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+}

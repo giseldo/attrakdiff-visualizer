@@ -80,6 +80,19 @@ export default function AttrakDiffSurvey() {
     (e.target as HTMLInputElement).value = "";
   };
 
+  // Função para calcular a média das respostas
+  function getAverageAnswers(results: { answers: number[] }[], questions: any[]) {
+    if (results.length === 0) return [];
+    const numQuestions = questions.length;
+    const sum = Array(numQuestions).fill(0);
+    results.forEach(r => {
+      r.answers.forEach((val, idx) => {
+        sum[idx] += val;
+      });
+    });
+    return sum.map(total => total / results.length);
+  }
+
   // Renderiza seleção de tabs para múltiplos respondentes do CSV
   const renderTabs = () => (
     <div className="flex space-x-2 mb-4 overflow-x-auto">
@@ -94,6 +107,17 @@ export default function AttrakDiffSurvey() {
           {item.label || `Pessoa ${idx + 1}`}
         </Button>
       ))}
+      {results.length > 1 && (
+        <Button
+          key="todos"
+          variant={selectedIdx === -2 ? "default" : "outline"}
+          size="sm"
+          className="min-w-[80px]"
+          onClick={() => setSelectedIdx(-2)}
+        >
+          Todos
+        </Button>
+      )}
     </div>
   );
 
@@ -225,6 +249,12 @@ export default function AttrakDiffSurvey() {
                 {selectedIdx >= 0 && (
                   <AttrakDiffChart
                     answers={results[selectedIdx].answers}
+                    questions={questions}
+                  />
+                )}
+                {selectedIdx === -2 && (
+                  <AttrakDiffChart
+                    answers={getAverageAnswers(results, questions)}
                     questions={questions}
                   />
                 )}

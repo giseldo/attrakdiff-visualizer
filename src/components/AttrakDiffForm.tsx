@@ -5,6 +5,7 @@ import {
   AttrakDiffScale,
 } from "../lib/attrakdiff";
 import { Button } from "@/components/ui/button";
+import { Send } from "lucide-react";
 import { toast } from "@/hooks/use-toast";
 
 type QuestionnaireType = "completo" | "resumido";
@@ -111,6 +112,7 @@ export default function AttrakDiffForm({ onSubmit }: Props) {
           disabled={submitting || answers.some((a) => a === null)}
           aria-disabled={submitting || answers.some((a) => a === null)}
           aria-label="Enviar respostas do questionário"
+          icon={<Send />}
         >
           {submitting ? "Enviando..." : "Enviar"}
         </Button>

@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { ATTRAKDIFF_QUESTIONS, ATTRAKDIFF_QUESTIONS_SHORT } from "../lib/attrakdiff";
 import Papa from "papaparse";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
+import { ArrowLeft, Upload, Download, UserPlus, BarChart2, Shuffle, Send } from "lucide-react";
 
 interface ResultEntry {
   answers: number[];
@@ -114,7 +115,10 @@ export default function AttrakDiffSurvey() {
   return (
     <div className="min-h-screen bg-gray-50 flex flex-col items-center py-10">
       <div className="w-full max-w-5xl px-6">
-        <Button variant="outline" size="sm" className="mb-6" onClick={() => navigate("/")}>← Voltar</Button>
+        <Button variant="outline" size="sm" className="mb-6" onClick={() => navigate("/")}>
+          <ArrowLeft className="w-4 h-4 mr-2" />
+          Voltar
+        </Button>
 
         {/* Tabs */}
         <div className="flex gap-2 mb-6">
@@ -140,6 +144,7 @@ export default function AttrakDiffSurvey() {
             size="sm"
             className="mb-4"
             onClick={() => setSelectedIdx(-1)}
+            icon={<UserPlus />}
           >
             Responder como outra pessoa
           </Button>
@@ -176,11 +181,11 @@ export default function AttrakDiffSurvey() {
                   className="hidden"
                   id="csv-upload"
                 />
-                <Button asChild variant="outline" size="sm">
+                <Button asChild variant="outline" size="sm" icon={<Upload />}>
                   <span role="button" tabIndex={0} className="cursor-pointer">Importar respostas CSV</span>
                 </Button>
               </label>
-              <Button variant="outline" size="sm" onClick={handleDownloadExample}>
+              <Button variant="outline" size="sm" onClick={handleDownloadExample} icon={<Download />}>
                 Baixar exemplo CSV
               </Button>
               <Button
@@ -189,6 +194,7 @@ export default function AttrakDiffSurvey() {
                 className="ml-2"
                 disabled={results.length === 0}
                 onClick={() => setActiveTab('respostas')}
+                icon={<BarChart2 />}
               >
                 Carregar e ir para os gráficos
               </Button>
@@ -208,8 +214,8 @@ export default function AttrakDiffSurvey() {
                 size="lg"
                 className="shadow-md px-6 py-2 text-base font-semibold transition-transform duration-150 hover:scale-105 hover:shadow-lg"
                 onClick={handleAddRandom}
+                icon={<Shuffle />}
               >
-                <span role="img" aria-label="dados aleatórios" className="mr-2">🎲</span>
                 Preencher com dados aleatórios
               </Button>
             </div>
